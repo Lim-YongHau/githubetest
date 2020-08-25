@@ -13,11 +13,12 @@ if ($conn->connect_error) {
 
 session_start();
  
-
+// Check if the user is logged in, if not then redirect him to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: loginAdmin.php");
     exit;
 }
+
 
 if(isset($_POST['delete'])){
     if(empty($_REQUEST['item'])){
@@ -25,8 +26,9 @@ if(isset($_POST['delete'])){
     }
     else{
         foreach($_REQUEST['item'] as $deleteID){
-           echo  $sql="delete from feedback where id='$deleteID'";
+           echo  $sql="delete from products where product_title='$deleteID'";
             $result=$conn->query($sql);
+            echo "<script>alert('Product has been delete sucessfully')</script>";
         }
     }
 }
@@ -59,9 +61,9 @@ if(isset($_POST['delete'])){
     </nav>
    
     
-    <button class="navbar-toggler mb-0 h2" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    <button class="navbar-toggler mb-0 h2 bg-primary" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-     
+      <span class="oi oi-menu bg-primary " ></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -96,6 +98,8 @@ if(isset($_POST['delete'])){
               <a class="dropdown-item" href="logout.php">LOGOUT</a> 
               </div>
         </li>
+      
+        
 
       </ul> 
      
@@ -106,44 +110,49 @@ if(isset($_POST['delete'])){
 
 
 <div class="table-responsive" id="sailorTableArea">
-<h1 style="text-align:center ">View Feedback</h1>
+<h1 style="text-align:center ">Product List</h1>
 </br>
     <table id="sailorTable" class="table table-striped table-bordered" width="100%">
 
-      <form action="ViewFeedback.php?" method="POST">
+      <form action="ViewProduct.php?" method="POST">
         <thead>
             <tr class="bg-info">
                <th>&nbsp;</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone No</th>
-                <th>Massage</th>
+                <th>Product Name</th>
+                <th>Product Image</th>
+                <th>Product Categories</th>
+                <th>Categories</th>
+                <th>Price</th>
+                <th>Product Dertribution</th>
                 
             </tr>
         </thead>
         <tbody>
         
         <?php
-        $sql="select*from feedback";
+        $sql="select*from products";
         $result=$conn->query($sql);
         if($result->num_rows>0){
             while($row=$result->fetch_assoc()){
         //display result
-        $id=$row['id'];
-        $email=$row['email'];
-        $phone=$row['phone'];
-         $message=$row['message'];
-        
+        $product_title=$row['product_title'];
+        $product_img1=$row['product_img1'];
+        $p_cat_id=$row['p_cat_id'];
+         $cat_id=$row['cat_id'];
+         $product_price=$row['product_price'];
+         $product_desc=$row['product_desc'];
       
 
         ?>
             <tr>
-            <td><input type="checkbox" name="item[]" value="<?php echo $id;?>"></td>
-                <td><a href="FeedbackForm1.php? id=<?php echo $id; ?> ">
-                <?php echo $id; ?></a></td>
-                <td><?php echo $email; ?></td>
-                <td><?php echo $phone; ?></td>
-                <td><?php echo  $message; ?></td>
+            <td><input type="checkbox" name="item[]" value="<?php echo $product_title;?>"></td>
+                <td><a href="Insert_product.php? product_title=<?php echo $product_title; ?> ">
+                <?php echo $product_title; ?></a></td>
+                <td> <img src="product_images/<?php echo $product_img1; ?>" width="40%"></td>
+                <td><?php echo $p_cat_id; ?></td>
+                <td><?php echo  $cat_id; ?></td>
+                <td><?php echo  $product_price; ?></td>
+                <td><?php echo  $product_desc; ?></td>
                
                
             </tr>
@@ -153,7 +162,7 @@ if(isset($_POST['delete'])){
     }
 ?>
 <tr>
-<td colspan="6" style="text-align:center "><button name ="delete" type= "submit" class="btn btn-denger btn-xs">Delete</button>
+<td colspan="7" style="text-align:center "><button name ="delete" type= "submit" class="btn btn-danger">Delete</button>
 
 </td>
 </tr>

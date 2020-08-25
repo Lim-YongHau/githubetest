@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$database ="loginntd";
+$database ="ntd_db";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password,$database);
@@ -11,6 +11,9 @@ $conn = new mysqli($servername, $username, $password,$database);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
+
+session_start();
+Isset($_SESSION['username']);
 
 if(isset($_POST['insert'])){
     $customerID=$_POST['customerID']; //received input value
@@ -35,7 +38,7 @@ if(isset($_POST['insert'])){
          $id=$row['id'];
          $email=$row['email'];
          $phone=$row['phone'];
-         $address=$row['message'];
+         $message=$row['message'];
          
     
     }
@@ -150,7 +153,7 @@ if(isset($_POST['insert'])){
           <a class="nav-link mb-0 h5" href="home.php">Home<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link  mb-0 h5" href="SelectionClothes.php">My Store<span class="badge badge-pill badge-success">3</span>
+          <a class="nav-link  mb-0 h5" href="My_Store.php">My Store<span class="badge badge-pill badge-success">3</span>
             <img src="sopping.png" class="img-fluid rounded-circle" width="25" height="25" alt="">
           </a>
         </li>
@@ -166,8 +169,28 @@ if(isset($_POST['insert'])){
             <a class="dropdown-item" href="videoPage.php">Video n News</a>
           </div>
         </li>
+        <li class="nav-item dropdown">
+        <a class="nav-link  mb-0 h5 dropdown-toggle" href="login.php" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">Login and Register </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="login.php">Login</a> 
+              <a class="dropdown-item" href="logout.php">LOGOUT</a> 
+              </div>
+        </li>
+
         <li class="nav-item">
-          <a class="nav-link  mb-0 h5" href="b.php" tabindex="-1" aria-disabled="true">Log in</a>
+          <a class="nav-link  mb-0 h5" href="userProfile.php" tabindex="-1" aria-disabled="true"> Welcome 
+          <?php
+          if(isset($_SESSION['userName'])){
+             echo $_SESSION['userName'];
+            }else{
+              echo "User";
+	            }
+          ?>
+          </a>
+          
+        </li>
+       
         </li>
       </ul>
       
@@ -211,8 +234,8 @@ if(isset($_POST['insert'])){
 
                             <div class="txtb">
                                 <label for="customerMessage" class="text-info">Message :</label>
-                                <input type="text" name="customerMessage" id="customerMessage" class="form-control" value ="<?php if(isset($_GET['id'])){echo  $address;}?>">
-                                <textarea></textarea>
+                                <input type="text" name="customerMessage" id="customerMessage" class="form-control" value ="<?php if(isset($_GET['id'])){echo  $message;}?>">
+                                
                             </div>
 
                             
@@ -231,21 +254,7 @@ if(isset($_POST['insert'])){
 	                     </div> <!-- form-group// -->      
                         </form>
 
-                        <?php
-	                  if(isset($_GET['id'])){
-                            echo' 
-                            <style>
-                              body  {
-                                background-image: url("background3.jpg");
-                               }<style>';
-
-	                        }else{
-	                     	echo ' <style>
-                              body  {
-                               background-image: url("background1.png");
-                              }<style>';
-                      	}
-	                   ?>
+                       
 
                     </div>
                 </div>

@@ -1,3 +1,10 @@
+<?php
+
+session_start();
+if(!isset($_SESSION['username'])){
+    header('lacation:login.php');
+}
+?>
 <!doctype html>
 <html lang="en">
 
@@ -7,49 +14,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Bootstrap CSS -->
+  <link rel="stylesheet" type="text/css" href="style.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <title>Game Time</title>
-  <style>
- .icon-bar {
-  position: fixed;
-  top: 35%;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-}
-
-.icon-bar a {
-  display: block;
-  text-align: center;
-  padding: 10px;
-  transition: all 0.3s ease;
-  color:yellow;
-  font-size: 20px;
-}
-
-.icon-bar a:hover {
-  background-color: #000;
-}
-
-.facebook {
-  background: #3B5998;
-  color: white;
-}
-
-.twitter {
-  background: #55ACEE;
-  color:yellow;
-}
-
-.google {
-  background: #dd4b39;
-  color: white;
-}
-
-    
-  </style>
+  
 </head>
 
 <body>
@@ -74,9 +47,13 @@
         <li class="nav-item active">
           <a class="nav-link mb-0 h5" href="home.php">Home<span class="sr-only">(current)</span></a>
         </li>
+        
+      
+      
+
         <li class="nav-item">
-          <a class="nav-link  mb-0 h5" href="  SelectionClothes.php">My Store<span class="badge badge-pill badge-success">3</span>
-            <img src="sopping.png" class="img-fluid rounded-circle" width="25" height="25" alt="">
+          <a class="nav-link  mb-0 h5" href="MY_Store.php">My Store
+            
           </a>
         </li>
         <li class="nav-item dropdown">
@@ -91,25 +68,46 @@
             <a class="dropdown-item" href="videoPage.php">Video n News</a>
           </div>
         </li>
-        <li class="nav-item">
-          <a class="nav-link  mb-0 h5" href="b.php" tabindex="-1" aria-disabled="true">Log in</a>
+        
+        <li class="nav-item dropdown">
+        <a class="nav-link  mb-0 h5 dropdown-toggle" href="login.php" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">Login and Register </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="login.php">Login</a> 
+              <a class="dropdown-item" href="logout.php">LOGOUT</a> 
+              </div>
         </li>
-      </ul>
+
+        <li class="nav-item">
+          <a class="nav-link  mb-0 h5" href="userProfile.php" tabindex="-1" aria-disabled="true"> Welcome 
+          <?php
+          if(isset($_SESSION['userName'])){
+             echo $_SESSION['userName'];
+            }else{
+              echo "User";
+              }
+              
+          ?>
+          </a>
+          
+        </li>
+      </ul> 
+      
       <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
+
+      <li >
+          <a href="ViewCartDetail.php">
+            <img src="cart.png"  width="50" height="50" alt="">
+           
+          </a>
+        </li>
     </div>
   </nav>
 
 
-  <!---<div class="row">
-            <div class="col-sm-3" style="background-color:red">.col-sm-4</div>
-            <div class="col-sm-2" style="background-color:blue">.col-sm-2</div>
-            <div class="col-sm-2" style="background-color:yellow">.col-sm-2</div>
-            <div class="col-sm-2" style="background-color:purple">.col-sm-2</div>
-            <div class="col-sm-3" style="background-color:saddlebrown">.col-sm-3</div>
-    </div>--->
 
 
 
@@ -155,29 +153,114 @@
     </a>
 
   </div>
+  <br>
 
-  <div class="container">
-    <div class="card-group">
-      <div class="card">
-        <img src="1.gif" class="card-img-top" alt="...">
-        <div class="card-body">
-         
+  <div class="w3-row w3-light">
+  <div class="w3-col l3 s6">
+      <div class="w3-container">
+        <div class="w3-display-container">
+          <img src="equipment7.jpg" style="width:100%">
+          <span class="w3-tag w3-display-topleft w3-container w3-red">HOT</span>
+          <div class="w3-display-middle w3-display-hover">
+            <a href="MY_Store.php">
+            <button  class="w3-button w3-black" >Buy now <i class="fa fa-shopping-cart"></i></button>
+            </a>
+          </div>
         </div>
-      </div>
-      <div class="card">
-        <img src="3.gif" class="card-img-top" alt="...">
-        <div class="card-body">
-         
-        </div>
-      </div>
-      <div class="card">
-        <img src="2.gif" class="card-img-top" alt="...">
-        <div class="card-body">
-         
-        </div>
+        <p>Small Box<br><b>RM 24</b></p>
       </div>
     </div>
+
+    <div class="w3-col l3 s6">
+      <div class="w3-container">
+        <div class="w3-display-container">
+          <img src="Surrounding2.jpg" style="width:100%">
+          <span class="w3-tag w3-display-topleft ">New</span>
+          <div class="w3-display-middle w3-display-hover">
+          <a href="MY_Store.php">
+            <button  class="w3-button w3-black" >Buy now <i class="fa fa-shopping-cart"></i></button>
+            </a>
+          </div>
+        </div>
+        <p>Men Hoodie<br><b>RM 50</b></p>
+      </div>
+    </div>
+
+    <div class="w3-col l3 s6">
+      <div class="w3-container">
+        <div class="w3-display-container">
+          <img src="game (12).jpg" style="width:63%">
+          <span class="w3-tag w3-display-topleft w3-container w3-red">HOT</span>
+          <div class="w3-display-middle w3-display-hover">
+          <a href="MY_Store.php">
+            <button  class="w3-button w3-black" >Buy now <i class="fa fa-shopping-cart"></i></button>
+            </a>
+          </div>
+        </div>
+        <p>Arms (Game)<br><b>RM 239</b></p>
+      </div>
+    </div>
+
+    <div class="w3-col l3 s6">
+      <div class="w3-container">
+        <div class="w3-display-container">
+          <img src="doll3.jpg" style="width:100%">
+          <span class="w3-tag w3-display-topleft w3-container w3-teal">Discount</span>
+          <div class="w3-display-middle w3-display-hover">
+          <a href="MY_Store.php">
+            <button  class="w3-button w3-black" >Buy now <i class="fa fa-shopping-cart"></i></button>
+            </a>
+          </div>
+        </div>
+        <p>Jenny Turtle (Doll)<br><b>Rm 40</b></p>
+      </div>
+    </div>
+
   </div>
+
+
+  <br>
+  
+  <div class="w3-padding-64 w3-blue">
+  <div class="w3-row-padding">
+    <div class="w3-col l8 m6">
+      <h1 class="w3-jumbo"><b> Pokémon Sword & Pokémon Shield</b></h1>
+      <h1 class="w3-xxxlarge w3-text-yellow"><b>Introduction</b></h1>
+      <p> The official strategy guide from Pokémon for the Pokémon Sword and Pokémon Shield video games. Get the tips you need for each part of your journey with the step-by-step walkthrough and hints in Pokémon Sword & Pokémon Shield The Official Galar Region Strategy Guide. The Galar region is ready for you--are you ready for it? With the official strategy guide to Pokémon Sword and Pokémon Shield, prepare yourself to take on the Gym Challenge and battle your way to the Champion Cup for your chance to become the next Champion! Here's what you'll find inside:
+Complete walkthrough of the new Pokémon adventure! Lists of moves, items, and more--including how to get them! Info on all of the new features, including Dynamaxing and Max Raid Battles! Information on the Gigantamax Pokémon you may encounter during your adventure! Guides to the Wild Area and all you can do there, on your own and with friends! Pullout map of the region!  <span class="w3-xlarge  w3-text-orange">Price:RM 100</span></p>
+      
+    </div>
+    <div class="w3-col l4 m6">
+    <iframe width="450" height="470" src="https://www.youtube.com/embed/-Nl_t9yeV0k" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <!-- <img src="game1.jpg" class="w3-image w3-right w3-hide-small" width="600" height="500"> -->
+      
+    </div>
+  </div>
+</div>
+
+
+<!-- Clarity Section -->
+<div class="w3-padding-64 w3-red">
+  <div class="w3-row-padding">
+    <div class="w3-col l4 m6">
+    <iframe width="450" height="470" src="https://www.youtube.com/embed/Dk56OpKuFts" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="w3-col l8 m6">
+      <h1 class="w3-jumbo"><b>Fortnite</b></h1>
+      <h1 class="w3-xxxlarge w3-text-yellow"><b>Introduction</b></h1>
+      <p><span class="w3-xlarge">Price:RM 60</span> The Fortnite: Deep Freeze Bundle will include the Fortnite Battle Royale game, and premium content, including the Frostbite Outfit, Cold Front Glider, Chill-Axe Pickaxe, Freezing Point Back Bling, and 1, 000 V-Bucks, which can be used to purchase in-game items, such as outfits and the Premium Battle Pass. In Fortnite Battle Royale, players squad up and compete to be the last one standing in 100-player PvP, where they'll build cover, battle opponents, and survive the longest to earn their victory.</p>
+    </div>
+  </div>
+</div>
+     
+    </div>
+
+   
+
+       
+       
+
+  
 
 
 
@@ -246,9 +329,9 @@
   </div>
 </footer>
 <div class="icon-bar">
-    <a href="https://web.facebook.com/?_rdc=1&_rdr" class="facebook"><i class="fa fa-facebook"style="margin:0px"><img src="facebook.png" width="30"></i></a> 
-    <a href="https://twitter.com/login" class="twitter"><i class="fa fa-twitter"style="margin:0px"><img src="twitter.jpg" width="30"></i></a> 
-    <a href="https://www.google.com/?hl=ms" class="google"><i class="fa fa-google"style="margin:0px"><img src="google.png" width="30"></i></a> 
+    <a href="https://web.facebook.com/?_rdc=1&_rdr" class="facebook"><i class="fa fa-facebook"style="margin:0px"></i></a> 
+    <a href="https://twitter.com/login" class="twitter"><i class="fa fa-twitter"style="margin:0px"></i></a> 
+    <a href="https://www.google.com/?hl=ms" class="google"><i class="fa fa-google"style="margin:0px"></i></a> 
    
   </div>
 

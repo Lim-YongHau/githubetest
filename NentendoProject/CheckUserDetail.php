@@ -13,7 +13,7 @@ if ($conn->connect_error) {
 
 session_start();
  
-
+// Check if the user is logged in, if not then redirect him to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: loginAdmin.php");
     exit;
@@ -25,7 +25,7 @@ if(isset($_POST['delete'])){
     }
     else{
         foreach($_REQUEST['item'] as $deleteID){
-           echo  $sql="delete from feedback where id='$deleteID'";
+           echo  $sql="delete from usertable where name='$deleteID'";
             $result=$conn->query($sql);
         }
     }
@@ -50,7 +50,7 @@ if(isset($_POST['delete'])){
 </head>
 
 
-<nav class="navbar navbar-expand-lg navbar-danger  bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-danger  bg-dark">
     <nav class="navbar navbar-expand-lg navbar-danger  bg-dark ">
       <a class="navbar-brand" href="">
         <img src="logo.png" class="img-fluid rounded-circle" width="45" height="50" alt="">
@@ -100,51 +100,52 @@ if(isset($_POST['delete'])){
       </ul> 
      
     </div>
-   
   </nav>
 
 
 
+
+ 
+
 <div class="table-responsive" id="sailorTableArea">
-<h1 style="text-align:center ">View Feedback</h1>
+<h1 style="text-align:center ">Check User Detail</h1>
 </br>
     <table id="sailorTable" class="table table-striped table-bordered" width="100%">
 
-      <form action="ViewFeedback.php?" method="POST">
+      <form action="CheckUserDetail.php?" method="POST">
         <thead>
             <tr class="bg-info">
                <th>&nbsp;</th>
                 <th>Name</th>
                 <th>Email</th>
-                <th>Phone No</th>
-                <th>Massage</th>
-                
+                <th>Address </th>
+                <th>Phone</th>
+               
             </tr>
         </thead>
         <tbody>
         
         <?php
-        $sql="select*from feedback";
+        $sql="select*from usertable";
         $result=$conn->query($sql);
         if($result->num_rows>0){
             while($row=$result->fetch_assoc()){
         //display result
-        $id=$row['id'];
+        $name=$row['name'];
         $email=$row['email'];
-        $phone=$row['phone'];
-         $message=$row['message'];
+        $address=$row['address'];
+         $phone=$row['phone'];
         
       
 
         ?>
             <tr>
-            <td><input type="checkbox" name="item[]" value="<?php echo $id;?>"></td>
-                <td><a href="FeedbackForm1.php? id=<?php echo $id; ?> ">
-                <?php echo $id; ?></a></td>
+            <td><input type="checkbox" name="item[]" value="<?php echo $name;?>"></td>
+            <td><?php echo  $name; ?></td>
                 <td><?php echo $email; ?></td>
-                <td><?php echo $phone; ?></td>
-                <td><?php echo  $message; ?></td>
-               
+                <td><?php echo $address; ?></td>
+                <td><?php echo  $phone; ?></td>
+                
                
             </tr>
             <?php
@@ -153,7 +154,7 @@ if(isset($_POST['delete'])){
     }
 ?>
 <tr>
-<td colspan="6" style="text-align:center "><button name ="delete" type= "submit" class="btn btn-denger btn-xs">Delete</button>
+<td colspan="6" style="text-align:center "><button name ="delete" type= "submit" class="btn btn-danger">Delete</button>
 
 </td>
 </tr>
@@ -171,4 +172,10 @@ if(isset($_POST['delete'])){
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
-    </html>
+
+
+
+
+</html>
+
+    

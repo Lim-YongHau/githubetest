@@ -1,5 +1,9 @@
 <!doctype html>
 <html lang="en">
+<?php
+session_start();
+Isset($_SESSION['username']);
+?>
 
 <head>
   <!-- Required meta tags -->
@@ -48,7 +52,7 @@
           <a class="nav-link mb-0 h5" href="home.php">Home<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link  mb-0 h5" href="  SelectionClothes.php">My Store<span class="badge badge-pill badge-success">3</span>
+          <a class="nav-link  mb-0 h5" href="MY_Store.php">My Store<span class="badge badge-pill badge-success">3</span>
             <img src="sopping.png" class="img-fluid rounded-circle" width="25" height="25" alt="">
           </a>
         </li>
@@ -64,8 +68,26 @@
             <a class="dropdown-item" href="videoPage.php">Video n News</a>
           </div>
         </li>
+        <li class="nav-item dropdown">
+        <a class="nav-link  mb-0 h5 dropdown-toggle" href="login.php" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">Login and Register </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="login.php">Login</a> 
+              <a class="dropdown-item" href="logout.php">LOGOUT</a> 
+              </div>
+        </li>>
+
         <li class="nav-item">
-          <a class="nav-link  mb-0 h5" href="b.php" tabindex="-1" aria-disabled="true">Log in</a>
+          <a class="nav-link  mb-0 h5" href="userProfile.php" tabindex="-1" aria-disabled="true"> Welcome 
+          <?php
+          if(isset($_SESSION['userName'])){
+             echo $_SESSION['userName'];
+            }else{
+              echo "User";
+	            }
+          ?>
+          </a>
+          
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
@@ -73,6 +95,13 @@
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
     </div>
+
+    <li >
+          <a href="MY_Store.php">
+            <img src="cart.png"  width="50" height="50" alt="">
+           
+          </a>
+        </li>
   </nav>
 
 
@@ -80,7 +109,7 @@
 <h2 style="color:blue;margin-left:37%">
 First Look at Nintendo Switch
 </h2>
-<iframe width="1500" height="600" style="margin-left:10%;margin-top:25px;" src="https://www.youtube.com/embed/f5uik5fgIaI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="1500" height="600" style="margin-left:10%;margin-top:25px;" src="https://www.youtube.com/embed/f5uik5fgIaI?rel=0;&autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 <p >
 <h2 style="color:green;margin-left:37%">

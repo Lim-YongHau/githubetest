@@ -1,94 +1,71 @@
-<!DOCTYPE html>
 <html>
-<style>
-        body {
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
-    background-image:url("background2.png");
+<head>
+<title>user login and registration</title>
+<link rel="stylesheet" type="text/css" href="loginNTD/style.css">
 
-}
-.box  {
-    width:300px ;
-   padding: 40px;
-   position: absolute;
-   top: 50%;
-   left: 50%;
-   transform: translate(-50% ,-50%);
-   background: #191919;
-   text-align: center;
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 
-    }
+</head>
+<body>
+    <div class="container">
+    <div class="login-box">
+    <div class="row">
+    <div class="col-md-6 login-left">
+    <h2>Login here</h2>
+    <form action="validation.php" method="post">
+    <div class="form-group">
+    <label>Username</label>
+    <input type="text" name="user" class="form-control" required >
+    </div>
 
-    .box h1{
-        color: white;
-        text-transform: uppercase;
-        font-weight: 500;
-    }
+    <div class="form-group">
+    <label>Password</label>
+    <input type="password" name="password" class="form-control"  minlength="6"  maxlength="6" required >
+    </div>
+<button type="submit" class="btn btn-primary">Login</button>
+    </form>
+    </div>
 
-.box input[type= "text"],.box input[type="password"]{
-border: 0;
-background: none;
-display: block;
-margin: 20px auto;
-text-align: center;
-border: 2px solid #3498db;
-padding: 14px 10px;
-width: 200px;
-outline: none;
-color: white;
-border-radius: 24px;
-transition: 0.25s;
-}
+    <div class="col-md-6 login-right">
+    <h2>Register here</h2>
+    <form action="registration.php" method="post">
+    <div class="form-group">
+    <label>Username</label>
+    <input type="text" name="user" class="form-control" required >
+    </div>
 
-.box input[type="text"]:focus,.box input[type="password"]:focus{
-    width: 280px;
-    border-color: #2ecc71;
+    <div class="form-group">
+    <label>E-mail</label>
+    <input type="text" name="email" class="form-control" required>
+    </div>
 
-}
+    <div class="form-group">
+    <label>Address</label>
+    <input type="text" name="address" class="form-control" required>
+    </div>
 
-.box input[type="submit"]{
-border: 0;
-background: none;
-display: block;
-margin: 20px auto;
-text-align: center;
-border: 2px solid #3498db;
-padding: 14px 40px;
-width: 200px;
-outline: none;
-color: white;
-border-radius: 24px;
-transition: 0.25s;
-cursor: pointer;
-}
+    <div class="form-group">
+    <label>Phone</label>
+    <input type="text" name="phone" class="form-control" required>
+    </div>
 
-.box input[type="submit"]:hover{
-    background: #2ecc71;
-}
-        </style>
-    <head>
-    <meta charset="utf-8">
-    <title>Animated Login Form</title>
-    <link rel="stylesheet" type="text/css" href="">
-    </head>
-    <body>
-       <form class="box" action="process.php" method="post">
-     <h1>Login </h1>
-     <input type="text" name="loginID" id="loginID" placeholder="Email" >
-     <input type="password" name="loginPassword" id="loginPassword"placeholder="Password"  >
 
-     <?php
-        if(isset($_GET['id'])){
+    <div class="form-group">
+    <label>Password</label>
+    <input type="password" name="password" class="form-control"  minlength="6"  maxlength="6" required >
+    </div>
 
-     echo'<input type="submit" name="update" value="Edit">';
+    <div class="form-group">
+    <label>Comform Password</label>
+    <input type="password" name="password2" class="form-control"  minlength="6" maxlength="6" >
+    </div>
 
-      }else{
-	 echo'<input type="submit" name="insert" value="Login">';
-	   }
-	  ?>
+<button type="submit" class="btn btn-primary">Register</button>
+    </form>
+    </div>
+    </div>
 
-	                     
-       </form>
-    </body>
-</html>
+    </div>
+    </div>
+</body>
+</html> 
